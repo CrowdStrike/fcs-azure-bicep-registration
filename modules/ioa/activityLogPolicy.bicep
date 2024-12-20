@@ -83,7 +83,7 @@ resource csIOAPolicyRoleAssignment 'Microsoft.Authorization/roleAssignments@2022
 ]
 
 /* Create remediation task for the IOA policy assignment */
-resource csIOAPolicyRemediation 'Microsoft.PolicyInsights/remediations@2021-10-01' = {
+resource csIOAPolicyRemediation 'Microsoft.PolicyInsights/remediations@2024-10-01' = {
   name: guid('Remediate', csIOAPolicyDefinition.id, managementGroup().id)
   properties: {
     failureThreshold: {

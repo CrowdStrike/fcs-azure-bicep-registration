@@ -22,7 +22,7 @@ resource functionIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023
   name: functionAppIdentityName
 }
 
-resource hostingPlan 'Microsoft.Web/serverfarms@2022-09-01' = {
+resource hostingPlan 'Microsoft.Web/serverfarms@2024-04-01' = {
   name: hostingPlanName
   location: location
   tags: tags
@@ -36,7 +36,7 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   }
 }
 
-resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
+resource functionApp 'Microsoft.Web/sites@2024-04-01' = {
   name: functionAppName
   location: location
   tags: tags
@@ -57,7 +57,7 @@ resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
       alwaysOn: true
       appSettings: [
         {
-          name:'PYTHON_THREADPOOL_THREAD_COUNT' 
+          name: 'PYTHON_THREADPOOL_THREAD_COUNT'
           value: '4'
         }
         {
@@ -124,9 +124,7 @@ resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
           name: 'WEBSITE_VNET_ROUTE_ALL'
           value: '1'
         }
-        { name: 'AZURE_CLIENT_ID'
-          value: functionIdentity.properties.clientId
-        }
+        { name: 'AZURE_CLIENT_ID', value: functionIdentity.properties.clientId }
       ]
       ftpsState: 'Disabled'
       http20Enabled: true

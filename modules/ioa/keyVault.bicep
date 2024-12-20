@@ -6,7 +6,7 @@ param falconClientSecret string
 param location string = resourceGroup().location
 param tags object = {}
 
-resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' existing = {
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
   name: virtualNetworkName
 }
 
@@ -24,7 +24,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
     networkAcls: {
       bypass: 'AzureServices'
       defaultAction: 'Deny'
-      ipRules: [      ]
+      ipRules: []
       virtualNetworkRules: [
         {
           id: virtualNetwork.properties.subnets[0].id
@@ -46,7 +46,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
   }
 }
 
-resource keyVaultPrivateEndpoint 'Microsoft.Network/privateEndpoints@2022-01-01' = {
+resource keyVaultPrivateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01' = {
   name: 'kv-private-endpoint'
   location: location
   tags: tags
