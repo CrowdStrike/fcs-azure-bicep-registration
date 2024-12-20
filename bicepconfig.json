@@ -1,8 +1,94 @@
 {
   "experimentalFeaturesEnabled": {
-      "extensibility": true
+    "extensibility": true
   },
   "extensions": {
     "microsoftGraphV1": "br:mcr.microsoft.com/bicep/extensions/microsoftgraph/v1.0:0.1.8-preview"
+  },
+  "analyzers": {
+    "core": {
+      "enabled": true,
+      "verbose": false,
+      "rules": {
+        "adminusername-should-not-be-literal": {
+          "level": "error"
+        },
+        "artifacts-parameters": {
+          "level": "error"
+        },
+        "explicit-values-for-loc-params": {
+          "level": "error"
+        },
+        "no-hardcoded-env-urls": {
+          "level": "error"
+        },
+        "no-hardcoded-location": {
+          "level": "error"
+        },
+        "no-unnecessary-dependson": {
+          "level": "error"
+        },
+        "no-loc-expr-outside-params": {
+          "level": "error"
+        },
+        "no-unused-existing-resources": {
+          "level": "error"
+        },
+        "no-unused-params": {
+          "level": "error"
+        },
+        "no-unused-vars": {
+          "level": "error"
+        },
+        "max-outputs": {
+          "level": "error"
+        },
+        "max-params": {
+          "level": "error"
+        },
+        "max-resources": {
+          "level": "error"
+        },
+        "max-variables": {
+          "level": "error"
+        },
+        "outputs-should-not-contain-secrets": {
+          "level": "error"
+        },
+        "prefer-interpolation": {
+          "level": "error"
+        },
+        "protect-commandtoexecute-secrets": {
+          "level": "error"
+        },
+        "prefer-unquoted-property-names": {
+          "level": "error"
+        },
+        "use-stable-vm-image": {
+          "level": "error"
+        },
+        "use-recent-api-versions": {
+          "level": "warn"
+        },
+        "use-resource-id-functions": {
+          "level": "error"
+        },
+        "use-stable-resource-identifiers": {
+          "level": "error"
+        },
+        "secure-parameter-default": {
+          "level": "error"
+        },
+        "secure-params-in-nested-deploy": {
+          "level": "error"
+        },
+        "secure-secrets-in-params": {
+          "level": "error"
+        },
+        "simplify-interpolation": {
+          "level": "error"
+        }
+      }
+    }
   }
 }
