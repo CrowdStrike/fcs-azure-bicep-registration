@@ -87,10 +87,10 @@ try {
     # Request Falcon API access token
     Request-FalconToken -ClientId $Env:FALCON_CLIENT_ID -ClientSecret $Env:FALCON_CLIENT_SECRET -Cloud $($Env:FALCON_CLOUD_REGION.ToLower())
 
-    # Register Azure account in Falcon CSPM
+    # Register Azure account in Falcon Cloud Security
     New-FalconCloudAzureAccount -TenantId $AzureTenantId -SubscriptionId $AzureSubscriptionId -ClientId $Env:AZURE_CLIENT_ID -AccountType $AzureAccountType -YearsValid $AzureYearsValid
 
-    # Register Azure Management Group in Falcon CSPM
+    # Register Azure Management Group in Falcon Cloud Security
     if ($TargetScope -eq 'ManagementGroup') {
         New-FalconCloudAzureGroup -TenantId $AzureTenantId -DefaultSubscriptionId $AzureSubscriptionId 
     }

@@ -2,11 +2,11 @@
 
 # Support
 
-This is a community-driven, open source project designed to register Falcon CSPM with Azure using Bicep. While not a formal CrowdStrike product, This project is maintained by CrowdStrike and supported in partnership with the open source developer community.
+This is a community-driven, open source project designed to register  Falcon Cloud Security with Azure using Bicep. While not a formal CrowdStrike product, This project is maintained by CrowdStrike and supported in partnership with the open source developer community.
 
 ## Issue Reporting and Questions
 
-Issues may be reported [here](https://github.com/CrowdStrike/azure-cspm-registration-bicep/issues/new/choose) and are used to track bugs, documentation and link updates, enhancement requests and security concerns.
+Issues may be reported [here](https://github.com/CrowdStrike/fcs-azure-bicep/issues/new/choose) and are used to track bugs, documentation and link updates, enhancement requests and security concerns.
 
 ## Support Escalation
 

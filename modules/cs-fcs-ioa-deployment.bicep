@@ -12,7 +12,7 @@ targetScope = 'subscription'
 param location string = deployment().location
 
 @description('The prefix to be added to the deployment name.')
-param deploymentNamePrefix string = 'cs-cspm-ioa'
+param deploymentNamePrefix string = 'cs-fcs-ioa'
 
 @description('The suffix to be added to the deployment name.')
 param deploymentNameSuffix string = utcNow()
@@ -24,7 +24,7 @@ param resourceGroupName string = 'cs-ioa-group' // DO NOT CHANGE - used for regi
 param tags object = {
   'cstag-vendor': 'crowdstrike'
   'cstag-product': 'fcs'
-  'cstag-purpose': 'cspm'
+  'cstag-purpose': 'fcs'
 }
 
 @description('The CID for the Falcon API.')
@@ -357,7 +357,7 @@ module entraDiagnosticSetttings 'ioa/entraLog.bicep' = if (deployEntraLogDiagnos
   }
 }
 
-/* Set CrowdStrike CSPM Default Azure Subscription */
+/* Set CrowdStrike Falcon Cloud Security Default Azure Subscription */
 module setAzureDefaultSubscription 'ioa/defaultSubscription.bicep' = {
   scope: scope
   name: '${deploymentNamePrefix}-defaultSubscription-${deploymentNameSuffix}'

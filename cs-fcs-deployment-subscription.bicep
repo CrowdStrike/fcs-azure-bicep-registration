@@ -1,14 +1,14 @@
 targetScope = 'subscription'
 
 /*
-  This Bicep template deploys CrowdStrike CSPM integration for 
+  This Bicep template deploys CrowdStrike Falcon Cloud Security integration for
   Indicator of Misconfiguration (IOM) and Indicator of Attack (IOA) assessment.
 
   Copyright (c) 2024 CrowdStrike, Inc.
 */
 
 /* Parameters */
-@description('Targetscope of the CSPM integration.')
+@description('Targetscope of the Falcon Cloud Security integration.')
 @allowed([
   'ManagementGroup'
   'Subscription'
@@ -16,7 +16,7 @@ targetScope = 'subscription'
 param targetScope string = 'Subscription'
 
 @description('The prefix to be added to the deployment name.')
-param deploymentNamePrefix string = 'cs-cspm'
+param deploymentNamePrefix string = 'cs-fcs'
 
 @description('The suffix to be added to the deployment name.')
 param deploymentNameSuffix string = utcNow()
@@ -74,7 +74,7 @@ param location string = deployment().location
 param tags object = {
   'cstag-vendor': 'crowdstrike'
   'cstag-product': 'fcs'
-  'cstag-purpose': 'cspm'
+  'cstag-purpose': 'fcs'
 }
 
 /* IOM-specific parameter */
@@ -120,7 +120,7 @@ module iomAzureSubscription 'modules/iom/azureSubscription.bicep' = if (deployIO
   }
 }
 
-module ioaAzureSubscription 'modules/cs-cspm-ioa-deployment.bicep' = if (deployIOA && targetScope == 'Subscription') {
+module ioaAzureSubscription 'modules/cs-fcs-ioa-deployment.bicep' = if (deployIOA && targetScope == 'Subscription') {
   name: '${deploymentNamePrefix}-ioa-azureSubscription-${deploymentNameSuffix}'
   scope: subscription(defaultSubscriptionId)
   params:{

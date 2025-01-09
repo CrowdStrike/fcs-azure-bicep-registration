@@ -35,7 +35,7 @@ resource setAzureDefaultSubscription 'Microsoft.Resources/deploymentScripts@2023
       }
     ]
     arguments: '-AzureTenantId ${tenant().tenantId} -AzureSubscriptionId ${subscription().subscriptionId}'
-    scriptContent: loadTextContent('../../scripts/Set-FalconCspmAzureDefaultSubscription.ps1')
+    scriptContent: loadTextContent('../../scripts/Set-FalconFcsAzureDefaultSubscription.ps1')
     retentionInterval: 'PT1H'
     cleanupPreference: 'OnSuccess'
   }

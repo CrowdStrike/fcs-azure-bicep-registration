@@ -11,7 +11,7 @@ extension microsoftGraphV1
 
 /* Parameters */
 @description('Name of the Application Registration.')
-param applicationName string = 'CrowdStrikeCSPM-${uniqueString(tenant().tenantId)}'
+param applicationName string = 'CrowdStrikeFCS-${uniqueString(tenant().tenantId)}'
 
 @secure()
 @description('Public certificate data.')
@@ -21,7 +21,7 @@ param publicCertificate string = ''
 param grantAdminConsent bool = true
 
 /* Variables */
-var applicationDescription = 'CrowdStrike Falcon CSPM'
+var applicationDescription = 'CrowdStrike Falcon Cloud Security'
 var redirectUris = ['https://falcon.crowdstrike.com/cloud-security/registration/app/cspm/cspm_accounts']
 
 var applicationPermissions = [
