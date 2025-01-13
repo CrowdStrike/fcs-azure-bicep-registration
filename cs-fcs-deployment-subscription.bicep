@@ -30,12 +30,12 @@ param falconCID string
 @description('Client ID for the Falcon API.')
 param falconClientId string
 
-@description('Subscription Id of the default Azure Subscription.')
-param defaultSubscriptionId string
-
 @description('Client secret for the Falcon API.')
 @secure()
 param falconClientSecret string
+
+@description('Subscription Id of the default Azure Subscription.')
+param defaultSubscriptionId string
 
 @description('Falcon cloud region. Defaults to US-1, allowed values are US-1, US-2 or EU-1.')
 @allowed([
