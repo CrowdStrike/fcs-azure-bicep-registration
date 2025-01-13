@@ -16,7 +16,6 @@ The command below registers an Azure management group, including all Azure subsc
   - Security Reader
   - Key Vault Reader
   - Azure Kubernetes Service RBAC Reader
-  - Website Contributor
 - Assigns the **cs-website-reader** custom role on the subscription with the following actions:
   - Microsoft.Web/sites/Read
   - Microsoft.Web/sites/config/Read
