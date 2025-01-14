@@ -109,10 +109,10 @@ function Set-AzureAppRegistrationCertificate {
             New-AzADAppCredential -ApplicationId $ClientId -CertValue $ClientCertificate -ErrorAction Stop
         }
     }
-    catch [System.Exception] {
+    catch [System.Exception] { 
         Write-Error "An exception was caught: $($_.Exception.Message)"
         break
-    }
+    } 
     finally {
         Disconnect-AzAccount
     }
@@ -136,7 +136,7 @@ function New-FalconCloudAzureAccount {
         [string]$AccountType,
 
         [Parameter(Mandatory = $true)]
-        [int32]$YearsValid
+        [string]$YearsValid
     )
     try {
         $Uri     = "https://${FALCON_API_BASE_URL}/cloud-connect-cspm-azure/entities/account/v1"
@@ -211,7 +211,7 @@ function Get-FalconCloudAzureCertificate {
             Uri     = "https://${FALCON_API_BASE_URL}/cloud-connect-cspm-azure/entities/download-certificate/v1"
             Method  = "GET"
             Headers = @{
-                "Authorization" = "Bearer ${AccessToken}"
+                "Authorization" = "Bearer ${AccessToken}",
                 "Content-Type" = "application/x-www-form-urlencoded"
             }
             Body    = @{
