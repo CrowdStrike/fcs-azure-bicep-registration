@@ -156,7 +156,7 @@ function New-FalconCloudAzureAccount {
             )
         }
         # Create CSPM account
-        Invoke-RestMethod -Method POST -Uri $uri -Headers $headers -ContentType 'application/json' -Body (ConvertTo-Json $body)
+        Invoke-RestMethod -Method POST -Uri $uri -Headers $headers -ContentType 'application/json' -Body (ConvertTo-Json @body)
     }
     catch [System.Exception] {
         Write-Error "An exception was caught: $($_.Exception.Message)"
@@ -236,15 +236,15 @@ try {
 
     # Register Azure Management Group in Falcon Cloud Security
     if ($TargetScope -eq 'ManagementGroup') {
-        New-FalconCloudAzureGroup -AccessToken $AccessToken -TenantId $AzureTenantId -DefaultSubscriptionId $AzureSubscriptionId
+        New-FalconCloudAzureGroup -TenantId $AzureTenantId -DefaultSubscriptionId $AzureSubscriptionId 
     }
 
     # Get Falcon Azure Application certificate
-    $azurePublicCertificate = (Get-FalconCloudAzureCertificate -AccessToken $AccessToken -TenantId $AzureTenantId).public_certificate
+    $azurePublicCertificate = (Get-FalconCloudAzureCertificate -TenantId $AzureTenantId).public_certificate
 
     # Add certificate to existing Azure Application Registration
     if([System.Convert]::ToBoolean($UseExistingAppRegistration)) {
-        Set-AzureAppRegistrationCertificate -AccessToken $AccessToken -TenantId $AzureTenantId -SubscriptionId $AzureSubscriptionId -ClientId ${Env:AZURE_CLIENT_ID} -ClientSecret ${Env:AZURE_CLIENT_SECRET} -ClientCertificate $azurePublicCertificate
+        Set-AzureAppRegistrationCertificate -TenantId $AzureTenantId -SubscriptionId $AzureSubscriptionId -ClientId ${Env:AZURE_CLIENT_ID} -ClientSecret ${Env:AZURE_CLIENT_SECRET} -ClientCertificate $azurePublicCertificate
     }
     
     $DeploymentScriptOutputs['public_certificate'] = $azurePublicCertificate
