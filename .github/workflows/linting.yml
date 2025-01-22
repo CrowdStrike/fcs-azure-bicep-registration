@@ -1,0 +1,36 @@
+name: Bicep
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Lint Bicep
+        run: |
+          az config unset core.no_color
+          success="true"
+          FILES=$(find `pwd` \( -name "*.bicep" -o -name "*.bicepparam" \))
+          echo -e "🔍 \033[0;36mFiles to lint:"
+          echo $FILES
+          for file in $FILES; do
+          {
+            echo -e "🎗️ \033[0;36mLinting $file" && az bicep lint --file $file
+          } || {
+            success="false"
+          }
+          done
+          if [ "$success" = "false" ]; then
+            echo "::error::❌ Linting of the Bicep files failed."
+            exit 1;
+          fi;
