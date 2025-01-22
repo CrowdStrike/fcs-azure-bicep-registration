@@ -6,7 +6,7 @@ param authorizationRuleName string = 'cs-eventhub-monitor-auth-rule'
 param location string = resourceGroup().location
 param tags object = {}
 
-resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' existing = {
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
   name: virtualNetworkName
 }
 
