@@ -22,7 +22,7 @@ param grantAdminConsent bool = true
 
 /* Variables */
 var applicationDescription = 'CrowdStrike Falcon Cloud Security'
-var redirectUris = ['https://falcon.crowdstrike.com/cloud-security/registration/app/cspm/cspm_accounts']
+var redirectUris = ['https://falcon.crowdstrike.com/cloud-security/registration-v2/azure']
 
 var applicationPermissions = [
   { name: 'Application.Read.All', id: '9a5d68dd-52b0-4cc2-bd40-abcf44ac3a30', type: 'Role' }
