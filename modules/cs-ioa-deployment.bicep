@@ -189,7 +189,6 @@ module keyVaultDiagnosticSetting 'ioa/keyVaultDiagnosticSetting.bicep' = {
     storageAccountName: csLogStorage.outputs.storageAccountName
   }
   dependsOn: [
-    csLogStorage
     csLogStorageEncryption
   ]
 }
@@ -292,7 +291,6 @@ module activityLogFunction 'ioa/functionApp.bicep' = {
   dependsOn: [
     activityLogStorage
     activityLogStorageEncryption
-    activityLogFunctionIdentity
   ]
 }
 
@@ -336,17 +334,16 @@ module entraLogFunction 'ioa/functionApp.bicep' = {
   dependsOn: [
     entraLogStorage
     entraLogStorageEncryption
-    entraLogFunctionIdentity
   ]
 }
 
 module activityDiagnosticSettings 'ioa/activityLog.bicep' = if (deployActivityLogDiagnosticSettings) {
-  name:  '${deploymentNamePrefix}-activityLog-${deploymentNameSuffix}'
+  name: '${deploymentNamePrefix}-activityLog-${deploymentNameSuffix}'
   scope: subscription(subscriptionId)
   params: {
-      diagnosticSettingsName: activityLogSettings.diagnosticSettingsName
-      eventHubAuthorizationRuleId: eventHub.outputs.eventHubAuthorizationRuleId
-      eventHubName: eventHub.outputs.activityLogEventHubName
+    diagnosticSettingsName: activityLogSettings.diagnosticSettingsName
+    eventHubAuthorizationRuleId: eventHub.outputs.eventHubAuthorizationRuleId
+    eventHubName: eventHub.outputs.activityLogEventHubName
   }
 }
 
