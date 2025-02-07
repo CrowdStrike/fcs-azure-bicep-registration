@@ -177,6 +177,14 @@ To track progress of the deployment or if you encounter issues and want to see d
 
 ## Troubleshooting
 
+### SSL Certificate Verification Failure
+Some customers may encounter an error message when trying to run the deployment command that says something similar to: `Error while attempting to retrieve the latest Bicep version: HTTPSConnectionPool(host='aka.ms', port=443): Max retries exceeded with url: /BicepLatestRelease (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)')))`
+
+This is usually caused by the presence of a web proxy on your network using self-signed certificates. The Azure CLI has a dependency on Python and Python is not using the correct certificates to make requests. The easiest solution is to download the Bicep Tools independently of the Azure CLI and then tell the Azure CLI to use that version of Bicep Tools when needed. Here's how:
+1. Follow [Microsoft's instructions](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually) on how to manually install the Bicep Tools on your local machine
+2. Open a new terminal window on your machine and run the following command, which tells Azure CLI to use the manually downloaded version of Bicep Tools instead of trying to install the tools as part of Azure CLI: `az config set bicep.use_binary_from_path=True`
+3. Follow the deployment instructions again. This time it should work without issue.
+
 ### Existing Key Vault
 
 When using our Bicep files to set up Indicator Of Attack, a Key Vault is created to store sensitive information. As per Microsoft's recommendation, the Key Vault is created with [purge protection](https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview#purge-protection) enabled.
